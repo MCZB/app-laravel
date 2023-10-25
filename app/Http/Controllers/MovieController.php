@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Movie; 
 use App\Models\PopularMovie;
 use App\Models\TopRatedMovie;
 use App\Models\UpcomingMovie;
 use App\Models\NowPlayingMovie;
-use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\DB;
 
@@ -39,7 +37,7 @@ class MovieController extends Controller
 
                 foreach ($moviesData as $movieData) {
                     $releaseDate = isset($movieData['release_date']) ? $movieData['release_date'] : null;
-                    $existingMovie = $movieModel::where('id', $movieData['id'])->first();
+                    $existingMovie = $movieModel::where('id', $movieData['id'])->first();                   
 
                     if (!$existingMovie) {
                         $movieModel::create([
@@ -55,6 +53,7 @@ class MovieController extends Controller
                             'vote_average' => $movieData['vote_average'],
                             'vote_count' => $movieData['vote_count'],
                         ]);
+
 
                         $moviesImported++;
 
@@ -74,25 +73,29 @@ class MovieController extends Controller
 
     public function showPopular()
     {
-        $movies = PopularMovie::all();
+        $perPage = 50;
+        $movies = PopularMovie::paginate($perPage);
         return view('movies.popular', ['movies' => $movies]);
     }
     
     public function showTopRated()
     {
-        $movies = TopRatedMovie::all();
+        $perPage = 50;
+        $movies = TopRatedMovie::paginate($perPage);
         return view('movies.top_rated', ['movies' => $movies]);
     }
     
     public function showUpcoming()
     {
-        $movies = UpcomingMovie::all();
+        $perPage = 50;
+        $movies = UpcomingMovie::paginate($perPage);
         return view('movies.upcoming', ['movies' => $movies]);
     }
     
     public function showNowPlaying()
     {
-        $movies = NowPlayingMovie::all();
+        $perPage = 50;
+        $movies = NowPlayingMovie::paginate($perPage);
         return view('movies.now_playing', ['movies' => $movies]);
     }
 
@@ -125,6 +128,7 @@ public function showDetails($type, $id)
 
     return view('movies.details', ['movie' => $movie]);
 }
+
 
     private function getModelForApiUrl($apiUrl)
     {

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('top_rated_movies', function (Blueprint $table) {
             $table->id();
+            $table->json('genre_ids')->nullable();
             $table->string('original_language');
             $table->string('original_title');
             $table->text('overview');
