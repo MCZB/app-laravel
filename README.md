@@ -2,7 +2,7 @@
 Laravel-Movies is a Laravel-based movie website that, view popular, top rated, now playing and upcoming movies, The website is designed to be user-friendly and visually appealing.
 <hr/>
 
-![background](https://imgur.com/a/V0NqapX)
+![Descrição da Imagem](https://i.imgur.com/ExemploDoSeuLinkDeImagem.png)
 
 <hr/>
 
