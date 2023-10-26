@@ -44,8 +44,8 @@ Here are some ideas for future enhancements and features we plan to add to the p
 
 # 🍿 How to Run the Website on Your System
 
-1. Clone this repository: `git clone <YOUR REPOSITORY URL>`
-2. Navigate to the project directory: `cd YOUR_PROJECT_NAME`
+1. Clone this repository: `git clone https://github.com/MCZB/laravel-movie`
+2. Navigate to the project directory: `cd laravel-movie`
 3. Install Laravel dependencies: `composer install`
 4. Copy the environment file: `cp .env.example .env`
 5. Configure the `.env` file with your database settings and other necessary information.
