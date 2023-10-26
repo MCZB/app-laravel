@@ -11,9 +11,7 @@ Route::get('/movies/upcoming', [MovieController::class, 'showUpcoming']);
 Route::get('/movies/now_playing', [MovieController::class, 'showNowPlaying']);
 Route::get('/movies/{posterPath}', [MovieController::class, 'showPoster']);
 Route::get('/movies/{type}/{id}', [MovieController::class, 'showDetails']);
-Route::get('/movies/loadMore', [MovieController::class, 'loadMoreMovies']);
-Route::get('/movies/now_playing/{page}', 'MovieController@getNowPlayingMovies');
-
-
+Route::get('/home',[MovieController::class, 'showPopular']);
+Route::get('/movies/{id}',[MovieController::class, 'show']);
 
 

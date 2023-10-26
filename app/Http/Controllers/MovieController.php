@@ -109,26 +109,26 @@ class MovieController extends Controller
 
 public function showDetails($type, $id)
 {
-    $movie = null;
+    $models = [
+        'now_playing' => NowPlayingMovie::class,
+        'popular' => PopularMovie::class,
+        'top_rated' => TopRatedMovie::class,
+        'upcoming' => UpcomingMovie::class,
+    ];
 
-    switch ($type) {
-        case 'now_playing':
-            $movie = DB::table('now_playing_movies')->find($id);
-            break;
-        case 'popular':
-            $movie = DB::table('popular_movies')->find($id);
-            break;
-        case 'top_rated':
-            $movie = DB::table('top_rated_movies')->find($id);
-            break;
-        case 'upcoming':
-            $movie = DB::table('upcoming_movies')->find($id);
-            break;
+    if (array_key_exists($type, $models)) {
+        $movieModel = app($models[$type]);
+        $movie = $movieModel->find($id);
+    } else {
+        abort(404); // Página não encontrada para tipos de filmes desconhecidos
     }
 
-    return view('movies.details', ['movie' => $movie]);
-}
+    if ($movie) {
+        return view('movies.details', ['movie' => $movie]);
+    }
 
+    abort(404); // Página não encontrada para filmes não encontrados
+}
 
     private function getModelForApiUrl($apiUrl)
     {
