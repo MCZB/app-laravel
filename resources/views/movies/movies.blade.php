@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Rated</title>
+    <title>Laravel Movie</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
@@ -12,11 +12,11 @@
 <body class="bg-gray-900 text-white font-sans">
 
     <header class="bg-gray-800 py-4 text-center">
-        <h1 class="text-3xl font-bold">Top Rated</h1>
+        <h1 class="text-3xl font-bold">Laravel Movie</h1>
     </header>
 
     <nav class="bg-gray-700 p-4 flex justify-center">
-    <a href="{{ url('/home') }}" class="text-white mr-4 hover:underline">Home</a>
+        <a href="{{ url('/home') }}" class="text-white mr-4 hover:underline">Home</a>
         <a href="{{ url('/movies/popular') }}" class="text-white mr-4 hover:underline">Populares</a>
         <a href="{{ url('/movies/now_playing') }}" class="text-white mr-4 hover:underline">Now Playing</a>
         <a href="{{ url('/movies/top_rated') }}" class="text-white mr-4 hover:underline">Top Rated</a>
@@ -59,7 +59,7 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             @foreach ($movies as $movie)
             <div class="relative rounded overflow-hidden bg-gray-800 shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                <a href="{{ url('/movies/top_rated', $movie->id) }}">
+                <a href="{{ url('/home/movies', $movie->id) }}">
                     <img src="{{ asset('movies' . $movie->poster_path) }}" alt="{{ $movie->title }}" class="w-full h-64 object-cover">
                 </a>
                 <div class="p-4">
@@ -106,6 +106,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>

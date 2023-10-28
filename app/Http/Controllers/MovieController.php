@@ -74,32 +74,151 @@ class MovieController extends Controller
         return "Dados importados com sucesso para o banco de dados!";
     }
 
+    public function showHome()
+    {
+        $perPage = 50;
+        $movies = Movie::paginate($perPage);
+
+        $genres = [
+            28 => "Action",
+            12 => "Adventure",
+            16 => "Animation",
+            35 => "Comedy",
+            80 => "Crime",
+            99 => "Documentary",
+            18 => "Drama",
+            10751 => "Family",
+            14 => "Fantasy",
+            36 => "History",
+            27 => "Horror",
+            10402 => "Music",
+            9648 => "Mystery",
+            10749 => "Romance",
+            878 => "Science Fiction",
+            10770 => "TV Movie",
+            53 => "Thriller",
+            10752 => "War",
+            37 => "Western",
+        ];
+        return view('movies.movies', ['movies' => $movies, 'genres' => $genres]);
+    }
+
     public function showPopular()
     {
         $perPage = 50;
         $movies = PopularMovie::paginate($perPage);
-        return view('movies.popular', ['movies' => $movies]);
+
+        $genres = [
+            28 => "Action",
+            12 => "Adventure",
+            16 => "Animation",
+            35 => "Comedy",
+            80 => "Crime",
+            99 => "Documentary",
+            18 => "Drama",
+            10751 => "Family",
+            14 => "Fantasy",
+            36 => "History",
+            27 => "Horror",
+            10402 => "Music",
+            9648 => "Mystery",
+            10749 => "Romance",
+            878 => "Science Fiction",
+            10770 => "TV Movie",
+            53 => "Thriller",
+            10752 => "War",
+            37 => "Western",
+        ];
+
+        return view('movies.popular', ['movies' => $movies, 'genres' => $genres]);
     }
     
     public function showTopRated()
     {
         $perPage = 50;
         $movies = TopRatedMovie::paginate($perPage);
-        return view('movies.top_rated', ['movies' => $movies]);
+        $genres = [
+            28 => "Action",
+            12 => "Adventure",
+            16 => "Animation",
+            35 => "Comedy",
+            80 => "Crime",
+            99 => "Documentary",
+            18 => "Drama",
+            10751 => "Family",
+            14 => "Fantasy",
+            36 => "History",
+            27 => "Horror",
+            10402 => "Music",
+            9648 => "Mystery",
+            10749 => "Romance",
+            878 => "Science Fiction",
+            10770 => "TV Movie",
+            53 => "Thriller",
+            10752 => "War",
+            37 => "Western",
+        ];
+
+        return view('movies.top_rated', ['movies' => $movies, 'genres' => $genres]);
     }
+    
     
     public function showUpcoming()
     {
         $perPage = 50;
         $movies = UpcomingMovie::paginate($perPage);
-        return view('movies.upcoming', ['movies' => $movies]);
+        $genres = [
+            28 => "Action",
+            12 => "Adventure",
+            16 => "Animation",
+            35 => "Comedy",
+            80 => "Crime",
+            99 => "Documentary",
+            18 => "Drama",
+            10751 => "Family",
+            14 => "Fantasy",
+            36 => "History",
+            27 => "Horror",
+            10402 => "Music",
+            9648 => "Mystery",
+            10749 => "Romance",
+            878 => "Science Fiction",
+            10770 => "TV Movie",
+            53 => "Thriller",
+            10752 => "War",
+            37 => "Western",
+        ];
+
+        return view('movies.upcoming', ['movies' => $movies, 'genres' => $genres]);
     }
     
     public function showNowPlaying()
     {
         $perPage = 50;
-        $movies = NowPlayingMovie::paginate($perPage);
-        return view('movies.now_playing', ['movies' => $movies]);
+        $movies = NowPlayingMovie::paginate($perPage);        
+        $genres = [
+            28 => "Action",
+            12 => "Adventure",
+            16 => "Animation",
+            35 => "Comedy",
+            80 => "Crime",
+            99 => "Documentary",
+            18 => "Drama",
+            10751 => "Family",
+            14 => "Fantasy",
+            36 => "History",
+            27 => "Horror",
+            10402 => "Music",
+            9648 => "Mystery",
+            10749 => "Romance",
+            878 => "Science Fiction",
+            10770 => "TV Movie",
+            53 => "Thriller",
+            10752 => "War",
+            37 => "Western",
+        ];
+
+        return view('movies.now_playing', ['movies' => $movies, 'genres' => $genres]);
     }
 
     public function showPoster($posterPath)
@@ -113,6 +232,7 @@ class MovieController extends Controller
 public function showDetails($type, $id)
 {
     $models = [
+        'movies'=> Movie::class,
         'now_playing' => NowPlayingMovie::class,
         'popular' => PopularMovie::class,
         'top_rated' => TopRatedMovie::class,
@@ -131,6 +251,66 @@ public function showDetails($type, $id)
     }
 
     abort(404); // Página não encontrada para filmes não encontrados
+}
+
+public function filterMoviesByGenre($genreId)
+{
+    // Filtra os filmes com base no gênero fornecido
+    $genreName = $this->getGenreNameById($genreId);
+    $filteredMovies = Movie::whereRaw('JSON_CONTAINS(genre_ids, ?)', [$genreId])->paginate(50);
+
+    $genres = [
+        28 => "Action",
+        12 => "Adventure",
+        16 => "Animation",
+        35 => "Comedy",
+        80 => "Crime",
+        99 => "Documentary",
+        18 => "Drama",
+        10751 => "Family",
+        14 => "Fantasy",
+        36 => "History",
+        27 => "Horror",
+        10402 => "Music",
+        9648 => "Mystery",
+        10749 => "Romance",
+        878 => "Science Fiction",
+        10770 => "TV Movie",
+        53 => "Thriller",
+        10752 => "War",
+        37 => "Western",
+    ];
+
+    // Retorna a visão com os filmes filtrados
+    return view('movies.filtered', ['movies' => $filteredMovies, 'genreName' => $genreName, 'genres' => $genres]);
+}
+
+private function getGenreNameById($genreId)
+{
+    $genres = [
+        28 => "Action",
+        12 => "Adventure",
+        16 => "Animation",
+        35 => "Comedy",
+        80 => "Crime",
+        99 => "Documentary",
+        18 => "Drama",
+        10751 => "Family",
+        14 => "Fantasy",
+        36 => "History",
+        27 => "Horror",
+        10402 => "Music",
+        9648 => "Mystery",
+        10749 => "Romance",
+        878 => "Science Fiction",
+        10770 => "TV Movie",
+        53 => "Thriller",
+        10752 => "War",
+        37 => "Western",
+    ];
+
+    // Retorna o nome do gênero se existir no array, caso contrário, retorna "Desconhecido"
+    return $genres[$genreId] ?? "Desconhecido";
 }
 
     private function getModelForApiUrl($apiUrl)

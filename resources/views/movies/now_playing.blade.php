@@ -16,6 +16,7 @@
     </header>
 
     <nav class="bg-gray-700 p-4 flex justify-center">
+        <a href="{{ url('/home') }}" class="text-white mr-4 hover:underline">Home</a>
         <a href="{{ url('/movies/popular') }}" class="text-white mr-4 hover:underline">Populares</a>
         <a href="{{ url('/movies/now_playing') }}" class="text-white mr-4 hover:underline">Now Playing</a>
         <a href="{{ url('/movies/top_rated') }}" class="text-white mr-4 hover:underline">Top Rated</a>
@@ -23,6 +24,18 @@
     </nav>
 
     <div class="container mx-auto p-4">
+
+    <div class="my-4">
+            <form id="genreForm" class="flex items-center">
+                <label for="genreDropdown" class="mr-2">Choose a genre:</label>
+                <select id="genreDropdown" name="genreId"
+                    class="p-2 border border-gray-600 rounded-md bg-gray-800 text-white">
+                    @foreach ($genres as $genreId => $genreName)
+                        <option value="{{ $genreId }}">{{ $genreName }}</option>
+                    @endforeach
+                </select>
+            </form>
+        </div>
 
     <div class="swiper-container h-96 my-4 mx-auto bg-gray-800 rounded-lg shadow-lg overflow-hidden">
             <div class="swiper-wrapper">
@@ -39,14 +52,14 @@
 
 
         <div class="search-container my-4">
-            <label for="search" class="block text-sm font-semibold text-gray-300">Buscar filmes:</label>
-            <input type="text" id="search" class="mt-1 p-2 border border-gray-600 rounded-md w-full bg-gray-800 text-white" placeholder="Digite o nome do filme">
+            <label for="search" class="block text-sm font-semibold text-gray-300">Search for a movie:</label>
+            <input type="text" id="search" class="mt-1 p-2 border border-gray-600 rounded-md w-full bg-gray-800 text-white" placeholder="Enter the name of the movie">
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             @foreach ($movies as $movie)
             <div class="relative rounded overflow-hidden bg-gray-800 shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                <a href="{{ url('/movies/now_playing', $movie->id) }}">
+                <a href="{{ url('/movies/now_playing', $movie->id) }}" class="block">
                     <img src="{{ asset('movies' . $movie->poster_path) }}" alt="{{ $movie->title }}" class="w-full h-64 object-cover">
                 </a>
                 <div class="p-4">
@@ -70,10 +83,16 @@
             },
         });
 
+        const genreDropdown = document.getElementById('genreDropdown');
+        genreDropdown.addEventListener('change', function () {
+            const selectedGenreId = genreDropdown.value;
+            window.location.href = `/movies/genre/${selectedGenreId}`;
+        });
+
         const searchInput = document.getElementById('search');
         const movieCards = document.querySelectorAll('.relative');
 
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function () {
             const searchTerm = searchInput.value.toLowerCase();
 
             movieCards.forEach(card => {
