@@ -8,6 +8,8 @@ Laravel-Movies is a Laravel-based movie website that, view popular, top rated, n
 
 # 🍿 Features 
 
+- Genre Filtering: Allow users to filter movies by genre, such as action, comedy, drama, etc.
+- Movie Search: Add search functionality to allow users to search movies by title.
 - Popular Movies: displays a section for popular movies
 - Upcoming movies: displays a section for upcoming movies
 - Now Playing movies: displays a section for now playing movies
@@ -31,13 +33,11 @@ Laravel-Movies is built using the following technologies:
 
 Here are some ideas for future enhancements and features we plan to add to the project:
 
-- **Movie Search:** Add search functionality to allow users to search movies by title, genre, or actor.
 - **Rating System:** Allow users to rate movies and display average ratings for the movies.
 - **Comments and Reviews:** Add the ability for users to leave comments and reviews for the movies. Implement a star rating system.
 - **Favorites Lists:** Allow users to mark movies as favorites and create custom lists.
 - **Authentication System:** Implement a user authentication system so they can save their preferences, such as favorite movies and ratings.
 - **Pagination:** Add pagination to facilitate navigation if the movie list is long.
-- **Genre Filtering:** Allow users to filter movies by genre, such as action, comedy, drama, etc.
 - **Internationalization:** Implement support for different languages and regions to attract a global audience.
 - **Responsive Design:** Ensure the website is fully responsive to provide a great user experience on mobile devices, tablets, and desktops.
 
