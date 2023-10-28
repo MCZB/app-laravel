@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('popular_movies', function (Blueprint $table) {
             $table->id();
-            $table->json('genre_ids')->nullable();
+            $table->json('genre_ids');
             $table->string('original_language');
             $table->string('original_title');
             $table->text('overview');
             $table->float('popularity');
+            $table->string('backdrop_path')->nullable(); // Permitir valores nulos
             $table->string('poster_path')->nullable(); // Permitir valores nulos
             $table->date('release_date')->nullable(); // Permitir valores nulos
             $table->string('title');

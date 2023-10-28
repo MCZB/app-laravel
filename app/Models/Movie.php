@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
     protected $fillable = [
-        'id',
+        'id', // Adicione 'id' à lista de atributos em massa
+        'genre_ids',
         'original_language',
         'original_title',
         'overview',
         'popularity',
         'poster_path',
+        'backdrop_path',
         'release_date',
         'title',
         'video',

@@ -8,6 +8,7 @@ use App\Models\UpcomingMovie;
 use App\Models\NowPlayingMovie;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\DB;
+use App\Models\Movie;
 
 class MovieController extends Controller
 {
@@ -42,11 +43,13 @@ class MovieController extends Controller
                     if (!$existingMovie) {
                         $movieModel::create([
                             'id' => $movieData['id'],
+                            'genre_ids' => json_encode($movieData['genre_ids']),
                             'original_language' => $movieData['original_language'],
                             'original_title' => $movieData['original_title'],
                             'overview' => $movieData['overview'],
                             'popularity' => $movieData['popularity'],
                             'poster_path' => $movieData['poster_path'] ?? null,
+                            'backdrop_path' => $movieData['backdrop_path'] ?? null,
                             'release_date' => $releaseDate,
                             'title' => $movieData['title'],
                             'video' => $movieData['video'],

@@ -11,11 +11,13 @@ class TopRatedMovie extends Model
 
     protected $fillable = [
         'id', // Adicione 'id' à lista de atributos em massa
+        'genre_ids',
         'original_language',
         'original_title',
         'overview',
         'popularity',
         'poster_path',
+        'backdrop_path',
         'release_date',
         'title',
         'video',
@@ -23,3 +25,4 @@ class TopRatedMovie extends Model
         'vote_count',
     ];
 }
+    
