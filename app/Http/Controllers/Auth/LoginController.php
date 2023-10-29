@@ -35,6 +35,7 @@ class LoginController extends Controller
             $newUser = new User();
             $newUser->name = $user->name;
             $newUser->email = $user->email;
+            $newUser->google_id = $user->id;
             // Você pode adicionar mais campos se necessário, como 'google_id'
             $newUser->save();
 

@@ -19,6 +19,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'country',
+        'birthdate',
         'google_id', // Se você quiser armazenar o ID do Google
     ];
 
