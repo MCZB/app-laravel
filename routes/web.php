@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 
 Route::get('/import', [MovieController::class, 'importData']);
-Route::get('/home', [MovieController::class, 'showHome']);
+Route::get('/', [MovieController::class, 'showHome'])->name('home');
 Route::get('/movies/popular', [MovieController::class, 'showPopular']);
 Route::get('/movies/top_rated', [MovieController::class, 'showTopRated']);
 Route::get('/movies/upcoming', [MovieController::class, 'showUpcoming']);
@@ -13,4 +16,16 @@ Route::get('/movies/genre/{genreId}',[MovieController::class, 'filterMoviesByGen
 Route::get('/movies/{posterPath}', [MovieController::class, 'showPoster']);
 Route::get('/movies/{type}/{id}', [MovieController::class, 'showDetails']); 
 Route::get('/home/{type}/{id}',[MovieController::class, 'showDetails']); 
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/login/google', [LoginController::class, 'redirectToGoogle']);
+Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallback']);
+// Rotas para o registro de usuários
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+
+// Rotas para o login de usuários
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
 

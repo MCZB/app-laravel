@@ -12,7 +12,21 @@
 <body class="bg-gray-900 text-white font-sans">
 
     <header class="bg-gray-800 py-4 text-center">
-        <h1 class="text-3xl font-bold">Laravel Movie</h1>
+        <div class="flex justify-between items-center px-4">
+            <h1 class="text-3xl font-bold">Laravel Movie</h1>
+            <div>
+                @auth
+                <span class="mr-4">{{ auth()->user()->name }}</span>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="text-white hover:underline">Logout</button>
+                </form>
+                @else
+                <a href="{{ route('login') }}" class="text-white hover:underline mr-4">Login</a>
+                <a href="{{ route('register') }}" class="text-white hover:underline">Register</a>
+                @endauth
+            </div>
+        </div>
     </header>
 
     <nav class="bg-gray-700 p-4 flex justify-center">
