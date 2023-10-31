@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
 
 Route::get('/import', [MovieController::class, 'importData']);
 Route::get('/', [MovieController::class, 'showHome'])->name('home');
@@ -31,3 +33,18 @@ Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallb
 
 // Rota para logout de usuários
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+
+
+
+
+
+
+
