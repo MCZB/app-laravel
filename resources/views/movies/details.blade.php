@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Filme</title>
+    <title>Movie Details</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
@@ -24,21 +24,20 @@
                 <h1 class="text-4xl font-bold mb-6 text-yellow-500">{{ $movie->title }}</h1>
 
                 <div class="mb-6 text-gray-300">
-                    <h2 class="text-2xl font-semibold mb-2 text-yellow-500">Visão Geral</h2>
+                    <h2 class="text-2xl font-semibold mb-2 text-yellow-500">Overview</h2>
                     <p>{{ $movie->overview }}</p>
                 </div>
 
                 <div class="mb-6 text-gray-300">
-                    <h2 class="text-2xl font-semibold mb-2 text-yellow-500">Detalhes Adicionais</h2>
-                    <p><strong>Lançamento:</strong> {{ $movie->release_date }}</p>
-                    <p><strong>Popularidade:</strong> {{ $movie->popularity }}</p>
-                    <p><strong>Média de Votos:</strong> {{ $movie->vote_average }}</p>
-                    <p><strong>Total de Votos:</strong> {{ $movie->vote_count }}</p>
+                    <h2 class="text-2xl font-semibold mb-2 text-yellow-500">Additional Details</h2>
+                    <p><strong>Release Date:</strong> {{ $movie->release_date }}</p>
+                    <p><strong>Popularity:</strong> {{ $movie->popularity }}</p>
+                    <p><strong>Average Votes:</strong> {{ $movie->vote_average }}</p>
+                    <p><strong>Total Votes:</strong> {{ $movie->vote_count }}</p>
                 </div>
 
                 <a href="#"
-                    class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 py-2 px-4 rounded transition duration-300">Assistir
-                    Agora</a>
+                    class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 py-2 px-4 rounded transition duration-300">Watch Now</a>
             </div>
         </div>
     </div>
