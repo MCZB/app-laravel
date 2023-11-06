@@ -40,11 +40,3 @@ Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name(
 
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-
-
-
-
-
-
-
-

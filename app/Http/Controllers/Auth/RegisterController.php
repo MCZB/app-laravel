@@ -46,7 +46,7 @@ class RegisterController extends Controller
 
         Auth::login($user); // Faz login automaticamente após o registro
 
-        return redirect('/'); // Redireciona o usuário para a página inicial após o registro
+        return redirect('/')->with('status', 'Cadastro realizado com sucesso!'); // Redireciona o usuário para a página inicial após o registro com uma mensagem de sucesso
     }
 
     protected function validator(array $data)
@@ -59,6 +59,7 @@ class RegisterController extends Controller
             'country' => ['required', 'string', 'max:255'],
         ]);
     }
+
     protected function create(array $data)
     {
         return User::create([

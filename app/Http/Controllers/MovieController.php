@@ -12,6 +12,7 @@ use App\Models\Movie;
 
 class MovieController extends Controller
 {
+    // Método para importar dados de filmes de uma API externa
     public function importData()
     {
         set_time_limit(600);
@@ -73,7 +74,8 @@ class MovieController extends Controller
 
         return "Dados importados com sucesso para o banco de dados!";
     }
-
+    
+    // Método para exibir a página inicial com todos os filmes paginado
     public function showHome()
     {
         $perPage = 50;
@@ -103,6 +105,7 @@ class MovieController extends Controller
         return view('movies.movies', ['movies' => $movies, 'genres' => $genres]);
     }
 
+    // Métodos para exibir diferentes tipos de filmes (popular, top-rated, upcoming, now playing)
     public function showPopular()
     {
         $perPage = 50;

@@ -13,6 +13,7 @@ class ProfileController extends Controller
      */
     public function show()
     {
-        return view('/users/profile');
+        // This method returns the 'users/profile' view.
+        return view('users.profile');
     }
 }

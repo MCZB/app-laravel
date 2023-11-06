@@ -21,7 +21,7 @@
         <h1 class="text-3xl font-semibold">Laravel Movies</h1>
     </div>
 
-        <!-- Barra de Navegação -->
+    <!-- Barra de Navegação -->
     <nav class="bg-gray-700 p-4 flex justify-center">
         <a href="{{ url('/') }}" class="text-white mr-4 hover:underline">Home</a>
         <a href="{{ url('/movies/popular') }}" class="text-white mr-4 hover:underline">Populares</a>
@@ -41,6 +41,18 @@
 
             <!-- Título "Login" com um pouco de margem inferior -->
             <h2 class="text-2xl font-semibold mb-2 text-white mt-2">Login</h2>
+
+            @if(session('status'))
+                <div class="bg-gray-800 text-white p-2 mb-4 rounded">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="bg-red-500 text-white p-2 mb-4 rounded">
+                    {{ session('error') }}
+                </div>
+            @endif
 
             <form method="POST" action="{{ route('login') }}" class="w-full">
                 @csrf

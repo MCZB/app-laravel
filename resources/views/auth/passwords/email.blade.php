@@ -8,6 +8,19 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
+<div class="bg-gray-800 p-4 text-white text-center">
+    <h1 class="text-3xl font-semibold">Laravel Movies</h1>
+</div>
+
+<!-- Barra de Navegação -->
+<nav class="bg-gray-700 p-4 flex justify-center">
+    <a href="{{ url('/') }}" class="text-white mr-4 hover:underline">Home</a>
+    <a href="{{ url('/movies/popular') }}" class="text-white mr-4 hover:underline">Populares</a>
+    <a href="{{ url('/movies/now_playing') }}" class="text-white mr-4 hover:underline">Now Playing</a>
+    <a href="{{ url('/movies/top_rated') }}" class="text-white mr-4 hover:underline">Top Rated</a>
+    <a href="{{ url('/movies/upcoming') }}" class="text-white hover:underline">Upcoming</a>
+</nav>
+
 <body class="bg-gray-900 text-white">
     <div class="container mx-auto h-screen flex justify-center items-center">
         <div class="w-full max-w-md">

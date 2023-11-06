@@ -64,7 +64,7 @@ class LoginController extends Controller
             return redirect()->route('home');
         } else {
             // Se a autenticação falhar, redireciona de volta para o formulário de login com uma mensagem de erro
-            return redirect()->route('login')->with('error', 'Credenciais inválidas. Tente novamente.');
+            return redirect()->route('login')->with('error', 'Incorrect password or email, please try again.');
         }
     }
 

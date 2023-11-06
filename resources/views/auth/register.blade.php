@@ -47,6 +47,9 @@
                     <label for="email" class="block text-sm font-medium text-gray-300">Email:</label>
                     <input type="email" id="email" name="email" class="mt-1 p-2 w-full border rounded-md"
                         placeholder="Enter your email" required>
+                    @error('email')
+                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">

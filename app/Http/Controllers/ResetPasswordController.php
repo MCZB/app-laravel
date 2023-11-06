@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Password;
 
 class ResetPasswordController extends Controller
 {
+    // Método para enviar o email com o link para redefinição de senha
     public function sendResetLinkEmail(Request $request)
     {
         // Validação do email
@@ -36,7 +37,7 @@ class ResetPasswordController extends Controller
         return response()->json(['message' => 'Email de redefinição de senha enviado com sucesso']);
     }
 
-    // Método de validação do email (você pode personalizar isso conforme necessário)
+    // Método de validação do email
     protected function validateEmail(Request $request)
     {
         $request->validate([
@@ -44,19 +45,23 @@ class ResetPasswordController extends Controller
         ]);
     }
 
+    // Exibe o formulário para redefinir a senha
     public function showResetForm($token)
     {
         return view('auth/passwords/reset', ['token' => $token]);
     }
     
+    // Processa o pedido de redefinição de senha
     public function reset(Request $request)
     {
+        // Validação dos campos do formulário de redefinição de senha
         $request->validate([
             'token' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed|min:8',
         ]);
     
+        // Tenta redefinir a senha usando o serviço Password do Laravel
         $response = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {
@@ -66,9 +71,9 @@ class ResetPasswordController extends Controller
             }
         );
     
+        // Redireciona para a página de login com uma mensagem de sucesso ou exibe mensagens de erro
         return $response == Password::PASSWORD_RESET
             ? redirect()->route('login')->with('status', 'Senha redefinida com sucesso!')
             : back()->withErrors(['email' => [__($response)]]);
     }
-    
 }
